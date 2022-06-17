@@ -1,8 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useMemo} from 'react';
+import logo from '../logo.svg';
 import './App.css';
+import NZSL from '../dictionary/nzsl.json';
 
-function App() {
+const App = () => {
+  const signData = useMemo(() => )
+
   return (
     <div className="App">
       <header className="App-header">
