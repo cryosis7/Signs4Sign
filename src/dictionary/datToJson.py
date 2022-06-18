@@ -14,8 +14,8 @@ with open(datFilePath, encoding='iso8859') as datFile:
         entry['english'] = words[0]
         entry['description'] = words[1]
         entry['maori'] = words[2]
-        entry['videoUrl'] = words[3]
-        entry['handShape'] = words[4]
+        entry['handShape'] = words[3]
+        entry['videoUrl'] = words[4]
         entry['location'] = words[5]
         lines.append(json.dump(entry))
 

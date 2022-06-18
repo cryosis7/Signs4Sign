@@ -2,6 +2,7 @@
 
 # Custom
 idea/
+src/dictionary/assets*
 
 # dependencies
 /node_modules
