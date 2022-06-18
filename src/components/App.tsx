@@ -3,8 +3,19 @@ import logo from '../logo.svg';
 import './App.css';
 import NZSL from '../dictionary/nzsl.json';
 
+interface Sign {
+  english: string;
+  description: string;
+  maori?: string;
+  videoUrl: string;
+  handShape: number;
+  location: string;
+}
+
 const App = () => {
-  const signData = useMemo(() => )
+  const signData = useMemo(() => NZSL.map(sign => {
+
+  }), [NZSL])
 
   return (
     <div className="App">
