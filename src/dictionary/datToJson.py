@@ -25,7 +25,7 @@ with open(datFilePath, encoding='iso8859') as datFile:
 
         for key in ['english', 'secondary', 'maori']:
             if entry[key] != '':
-                [wordlist.append('"' + word.strip() + '"') for word in entry[key].split(",")]
+                [wordlist.append('"' + word.lower().strip() + '"') for word in entry[key].split(",")]
 
 with open(jsonFilePath, 'w', encoding='iso8859') as jsonFile:
     jsonFile.write(f'[{",".join(dictionary)}]')
