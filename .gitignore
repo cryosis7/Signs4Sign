@@ -3,6 +3,7 @@
 # Custom
 idea/
 src/dictionary/assets*
+src/dictionary/wordlist.json
 
 # dependencies
 /node_modules
