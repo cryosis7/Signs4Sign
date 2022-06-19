@@ -13,7 +13,7 @@ export const SearchResults = ({ searchTerm }: Props) => {
 
   return (
     <>
-      {matchingWords.sort().map((word) => (
+      {matchingWords.map((word) => (
         <Card>
           <CardContent>
             <Typography>{word}</Typography>

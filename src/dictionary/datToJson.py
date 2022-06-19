@@ -1,7 +1,9 @@
 import json
-import re
 import os
-from time import sleep
+import re
+
+def sortFunction(word: str):
+    return re.sub(r'^\"\(.*\)\s?', '"', word)
 
 cwd = os.path.dirname(os.path.abspath(__file__))
 datFilePath = os.path.normpath(os.path.join(cwd, 'nzsl.dat'))
@@ -23,12 +25,14 @@ with open(datFilePath, encoding='iso8859') as datFile:
         entry['location'] = words[6].rstrip()
         dictionary.append(json.dumps(entry))
 
+        synonyms = []
         for key in ['english', 'secondary', 'maori']:
             if entry[key] != '':
-                [wordlist.append('"' + word.lower().strip() + '"') for word in entry[key].split(",")]
+                [synonyms.append('"' + word.lower().strip() + '"') for word in entry[key].split(",")]
+        [wordlist.append(word) for word in list(set(synonyms))]
 
 with open(jsonFilePath, 'w', encoding='iso8859') as jsonFile:
     jsonFile.write(f'[{",".join(dictionary)}]')
 
 with open(wordlistFilePath, 'w', encoding='iso8859') as wordlistFile:
-    wordlistFile.write(f'[{",".join(wordlist)}]')
+    wordlistFile.write(f'[{",".join(sorted(wordlist, key=sortFunction))}]')
