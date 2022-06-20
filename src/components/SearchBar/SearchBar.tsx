@@ -1,23 +1,48 @@
-import { TextField } from "@mui/material";
-import { useState } from "react";
-import { SearchResults } from "./SearchResults";
+import { Button, Grid, TextField } from "@mui/material";
+import React, { useState } from "react";
 
-export const SearchBar = () => {
+interface Props {
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const SearchBar = ({ setSearchTerm }: Props) => {
   const [value, setValue] = useState<string>("");
 
-  const handleChange = (newWord: string) => {
-    setValue(newWord);
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSearchTerm(value);
   };
 
   return (
-    <>
-      <TextField
-        autoFocus
-        onChange={(event) => handleChange(event.target.value)}
-        value={value}
-        fullWidth
-      />
-      <SearchResults searchTerm={value} />
-    </>
+    <form onSubmit={handleSubmit}>
+      <Grid
+        container
+        spacing={1}
+        justifyContent="space-between"
+        alignItems="stretch"
+      >
+        <Grid
+          item
+          xs={8}
+          sm={9}
+          md={10}
+          className="flex "
+          sx={{ padding: "8px" }}
+        >
+          <TextField
+            autoFocus
+            label="Search For Sign"
+            onChange={(event) => setValue(event.target.value)}
+            value={value}
+            fullWidth
+          />
+        </Grid>
+        <Grid item className="flex flex-align-stretch" sx={{ padding: "8px" }}>
+          <Button variant="contained" type="submit">
+            Search
+          </Button>
+        </Grid>
+      </Grid>
+    </form>
   );
 };
