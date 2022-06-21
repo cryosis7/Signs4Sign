@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles.scss";
-import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
+import { Vocabulary } from "./components/Vocabulary/Vocabulary";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Vocabulary />
   </React.StrictMode>
 );
 

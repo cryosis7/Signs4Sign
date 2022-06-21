@@ -18,17 +18,11 @@ export const SearchBar = ({ setSearchTerm }: Props) => {
       <Grid
         container
         spacing={1}
+        wrap={"nowrap"}
         justifyContent="space-between"
         alignItems="stretch"
       >
-        <Grid
-          item
-          xs={8}
-          sm={9}
-          md={10}
-          className="flex "
-          sx={{ padding: "8px" }}
-        >
+        <Grid item className="flex" sx={{ padding: "8px" }}>
           <TextField
             autoFocus
             label="Search For Sign"
