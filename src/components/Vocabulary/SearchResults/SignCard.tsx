@@ -18,7 +18,7 @@ interface Props {
 
 export const SignCard = ({ isSelected, sign, toggleChecked }: Props) => {
   return (
-    <Card raised={isSelected}>
+    <Card raised={isSelected} onClick={() => toggleChecked(sign)}>
       <CardHeader title={sign.english} subheader={sign.maori} />
       {sign.secondary && (
         <CardContent>
@@ -32,6 +32,7 @@ export const SignCard = ({ isSelected, sign, toggleChecked }: Props) => {
             <Checkbox
               checked={isSelected}
               onChange={() => toggleChecked(sign)}
+              aria-label={sign.english}
             />
           }
         />

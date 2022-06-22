@@ -1,118 +1,50 @@
-import {
-  Box,
-  Button,
-  createTheme,
-  List,
-  ListItem,
-  ListItemText,
-  ListSubheader,
-  Skeleton,
-  styled,
-  SwipeableDrawer,
-  ThemeProvider,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-import React, { useState } from "react";
-import { Global } from "@emotion/react";
-import { grey } from "@mui/material/colors";
-import { DrawerPuller } from "./DrawerPuller";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
+import React from "react";
+import { Drawer } from "@mui/material";
 
 interface Props {
   vocabList: string[];
+  usingSmallScreen: boolean;
+  isDrawerOpen: boolean;
+  setIsDrawerOpen: (arg0: boolean) => void;
 }
 
-const drawerBleeding = 56;
-
-export const VocabList = ({ vocabList }: Props) => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-  const theme = useTheme();
-  const usingSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
-  return (
-    <ThemeProvider theme={theme}>
-      {usingSmallScreen ? (
-        <div style={{ height: "100%" }}>
-          <Global
-            styles={{
-              ".MuiDrawer-root > .MuiPaper-root": {
-                height: `calc(60% - ${drawerBleeding}px)`,
-                overflow: "visible",
-              },
-            }}
-          />
-          <SwipeableDrawer
-            anchor="bottom"
-            onClose={() => setIsDrawerOpen(false)}
-            onOpen={() => setIsDrawerOpen(true)}
-            open={isDrawerOpen}
-            ModalProps={{ keepMounted: true }}
-            disableSwipeToOpen={false}
-            swipeAreaWidth={drawerBleeding}
-          >
-            <DrawerPuller
-              pullerHeight={drawerBleeding}
-              clickHandler={() => setIsDrawerOpen(!isDrawerOpen)}
-            />
-            <nav aria-label="Vocabulary list contents">
-              <List disablePadding sx={{ overflow: "scroll" }}>
-                <ListSubheader>Vocabulary</ListSubheader>
-                {vocabList.map((word) => (
-                  <ListItem>
-                    <ListItemText primary={word} />
-                  </ListItem>
-                ))}
-              </List>
-            </nav>
-          </SwipeableDrawer>
-        </div>
-      ) : (
-        <nav aria-label="Vocabulary list contents" style={{ minWidth: "15%" }}>
-          <List disablePadding>
-            <ListSubheader>Vocabulary</ListSubheader>
-            {vocabList.map((word) => (
-              <ListItem>
-                <ListItemText primary={word} />
-              </ListItem>
-            ))}
-          </List>
-        </nav>
-      )}
-    </ThemeProvider>
+export const VocabList = ({
+  vocabList,
+  usingSmallScreen,
+  isDrawerOpen,
+  setIsDrawerOpen,
+}: Props) => {
+  const vocabListElement = (
+    <nav aria-label="Vocabulary list contents" style={{ minWidth: "15%" }}>
+      <List disablePadding>
+        <ListSubheader>Vocabulary</ListSubheader>
+        {vocabList.map((word, i) => (
+          <ListItem key={i}>
+            <ListItemText primary={word} />
+          </ListItem>
+        ))}
+      </List>
+    </nav>
   );
-  //
-  // return (
-  //     <SwipeableDrawer
-  //         anchor='left'
-  //         onClose={() => setIsDrawerOpen(false)}
-  //         onOpen={() => setIsDrawerOpen(false)}
-  //         open={isDrawerOpen}
-  //         ModalProps={{keepMounted: true}}
-  //         disableSwipeToOpen={true}
-  //     >
-  //         <Typography>Just Some Text</Typography>
-  //         <Skeleton variant='rectangular' height='100%' />
-  //     </SwipeableDrawer>
-  // )
 
-  // return (<div className='flex'>
-  //     {isDrawerOpen && (
-  //         <nav aria-label="Vocabulary list contents">
-  //             <List disablePadding>
-  //                 <ListSubheader>Vocabulary</ListSubheader>
-  //                 {vocabList.map((word) => (
-  //                     <ListItem>
-  //                         <ListItemText primary={word}/>
-  //                     </ListItem>
-  //                 ))}
-  //             </List>
-  //         </nav>
-  //     )}
-  //     <div className='debug' style={{position: 'fixed', height: '100%'}}>
-  //         <IconButton onClick={toggleDrawer} aria-label={`${isDrawerOpen ? 'close' : 'open'} vocabulary list`}>
-  //             {isDrawerOpen ? <ArrowLeftIcon/> : <ArrowRightIcon/>}
-  //         </IconButton>
-  //     </div>
-  // </div>)
+  return usingSmallScreen ? (
+    <div>
+      <Drawer
+        anchor="left"
+        onClose={() => setIsDrawerOpen(false)}
+        open={isDrawerOpen}
+        PaperProps={{
+          sx: { width: "60%" },
+        }}
+      >
+        {vocabListElement}
+      </Drawer>
+    </div>
+  ) : (
+    vocabListElement
+  );
 };
