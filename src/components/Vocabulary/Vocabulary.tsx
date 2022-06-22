@@ -31,9 +31,7 @@ export const Vocabulary = () => {
         className="flex flex-justify-space-between flex-align-stretch"
         style={{ gap: "1em" }}
       >
-        <div style={{ position: "fixed", height: "100%" }} className="debug">
-          <VocabList vocabList={selectedSigns.map((sign) => sign.english)} />
-        </div>
+        <VocabList vocabList={selectedSigns.map((sign) => sign.english)} />
         <AddVocabForm
           selectedSigns={selectedSigns}
           toggleChecked={toggleVocabWord}
