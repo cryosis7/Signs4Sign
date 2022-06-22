@@ -21,14 +21,14 @@ code {
   &-inline {
     display: inline-flex;
   }
-  &-row {
-    flex-direction: row;
+  &-column {
+    flex-direction: column;
   }
   &-align {
     &-center {
       align-items: center;
     }
-    &-baseling {
+    &-baseline {
       align-items: baseline;
     }
     &-stretch {
@@ -60,6 +60,18 @@ code {
 .padding {
   &-none {
     padding: 0;
+  }
+}
+
+.margin {
+  &-small {
+    margin: 6px;
+  }
+  &-vertical {
+    &-small {
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
   }
 }
 

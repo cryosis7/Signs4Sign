@@ -13,8 +13,7 @@ const AddVocabForm = ({ selectedSigns, toggleChecked }: Props) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   return (
-    // <Container maxWidth="md" sx={{ marginTop: "1em" }}>
-    <>
+    <Container maxWidth="md" sx={{ marginTop: "1em" }}>
       <SearchBar setSearchTerm={setSearchTerm} />
       <hr />
       <SearchResults
@@ -22,8 +21,7 @@ const AddVocabForm = ({ selectedSigns, toggleChecked }: Props) => {
         checkedList={selectedSigns}
         toggleChecked={toggleChecked}
       />
-    </>
-    // </Container>
+    </Container>
   );
 };
 

@@ -14,29 +14,21 @@ export const SearchBar = ({ setSearchTerm }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Grid
-        container
-        spacing={1}
-        wrap={"nowrap"}
-        justifyContent="space-between"
-        alignItems="stretch"
-      >
-        <Grid item className="flex" sx={{ padding: "8px" }}>
-          <TextField
-            autoFocus
-            label="Search For Sign"
-            onChange={(event) => setValue(event.target.value)}
-            value={value}
-            fullWidth
-          />
-        </Grid>
-        <Grid item className="flex flex-align-stretch" sx={{ padding: "8px" }}>
-          <Button variant="contained" type="submit">
-            Search
-          </Button>
-        </Grid>
-      </Grid>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-justify-space-between flex-align-stretch"
+      style={{ gap: "1em" }}
+    >
+      <TextField
+        autoFocus
+        label="Search For Sign"
+        fullWidth
+        onChange={(event) => setValue(event.target.value)}
+        value={value}
+      />
+      <Button variant="contained" type="submit">
+        Search
+      </Button>
     </form>
   );
 };

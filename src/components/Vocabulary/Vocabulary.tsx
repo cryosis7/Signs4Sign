@@ -2,11 +2,9 @@ import AddVocabForm from "./AddVocabForm";
 import { VocabList } from "./VocabList/VocabList";
 import { useState } from "react";
 import { Sign } from "../../shared/types";
-import { Grid, TextField } from "@mui/material";
 
 export const Vocabulary = () => {
   const [selectedSigns, setSelectedSigns] = useState<Sign[]>([]);
-  const [vocabListName, setVocabListName] = useState<string>("");
 
   const toggleVocabWord = (sign: Sign) => {
     const index = selectedSigns.indexOf(sign);
@@ -18,28 +16,29 @@ export const Vocabulary = () => {
   };
 
   return (
-    <Grid container spacing={1}>
-      <Grid item xs={12} className={"debug"}>
-        <TextField
-          label="Vocabulary List Name"
-          variant="standard"
-          value={vocabListName}
-          sx={{ border: "1px solid green" }}
-          onChange={(event) => setVocabListName(event.target.value)}
-        />
-      </Grid>
-      <Grid item xs={3} lg={2}>
-        <VocabList
-          vocabList={selectedSigns.map((sign) => sign.english)}
-          vocabListName={vocabListName}
-        />
-      </Grid>
-      <Grid item xs={8} lg={9}>
+    <>
+      {/*<div className='flex flex-justify-center margin-vertical-small'>*/}
+      {/*    <TextField*/}
+      {/*        label="List Name..."*/}
+      {/*        variant="filled"*/}
+      {/*        value={vocabListName}*/}
+      {/*        sx={{width: '50%'}}*/}
+      {/*        onChange={(event) => setVocabListName(event.target.value)}*/}
+      {/*    />*/}
+      {/*</div>*/}
+      {/*<hr/>*/}
+      <div
+        className="flex flex-justify-space-between flex-align-stretch"
+        style={{ gap: "1em" }}
+      >
+        <div style={{ position: "fixed", height: "100%" }} className="debug">
+          <VocabList vocabList={selectedSigns.map((sign) => sign.english)} />
+        </div>
         <AddVocabForm
           selectedSigns={selectedSigns}
           toggleChecked={toggleVocabWord}
         />
-      </Grid>
-    </Grid>
+      </div>
+    </>
   );
 };
