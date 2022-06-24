@@ -1,4 +1,4 @@
-import AddVocabForm from "./AddVocabForm";
+import AddVocabForm from "./AddVocabForm/AddVocabForm";
 import { VocabList } from "./VocabList/VocabList";
 import React, { useState } from "react";
 import { Sign } from "../../shared/types";

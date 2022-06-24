@@ -1,7 +1,7 @@
-import signDictionary from "../../../dictionary/nzsl.json";
+import signDictionary from "../../../../dictionary/nzsl.json";
 import { Grid } from "@mui/material";
 import React from "react";
-import { Sign } from "../../../shared/types";
+import { Sign } from "../../../../shared/types";
 import { SignCard } from "./SignCard";
 
 interface Props {

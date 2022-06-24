@@ -4,6 +4,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import React from "react";
 import { Drawer } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface Props {
   vocabList: string[];
@@ -24,7 +25,9 @@ export const VocabList = ({
         <ListSubheader>Vocabulary</ListSubheader>
         {vocabList.map((word, i) => (
           <ListItem key={i}>
-            <ListItemText primary={word} />
+            <Link to={`/sign/${encodeURI(word)}`}>
+              <ListItemText primary={word} />
+            </Link>
           </ListItem>
         ))}
       </List>

@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { Sign } from "../../../shared/types";
+import { Sign } from "../../../../shared/types";
 
 interface Props {
   isSelected: boolean;

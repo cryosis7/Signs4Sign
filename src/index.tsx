@@ -3,13 +3,29 @@ import ReactDOM from "react-dom/client";
 import "./styles.scss";
 import reportWebVitals from "./reportWebVitals";
 import { Vocabulary } from "./components/Vocabulary/Vocabulary";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { SignRoute } from "./routes/SignRoute";
+import { SearchRoute } from "./routes/SearchRoute";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Vocabulary />
+    <BrowserRouter>
+      <Routes>
+        <Route path="*" element={<Vocabulary />}>
+          <Route path="search">
+            <Route path=":searchTerm" element={<SearchRoute />} />
+          </Route>
+          <Route path="sign">
+            <Route path=":signName" element={<SignRoute />} />
+          </Route>
+        </Route>
+        {/*<Route path="/" element={<Vocabulary/>} />*/}
+        {/*<Route path="*" element={<Navigate replace to={'/'}/>} />*/}
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
