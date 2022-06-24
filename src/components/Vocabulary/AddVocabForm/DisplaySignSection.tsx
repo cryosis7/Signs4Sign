@@ -9,14 +9,14 @@ interface Props {
   toggleChecked: (arg0: Sign) => void;
 }
 
-const AddVocabForm = ({ selectedSigns, toggleChecked }: Props) => {
+const DisplaySignSection = ({ selectedSigns, toggleChecked }: Props) => {
   return (
-    <Container maxWidth="md" sx={{ marginTop: "1em" }}>
+    <div className="fullWidth">
       <SearchBar />
       <hr />
       <Outlet context={{ selectedSigns, toggleChecked }} />
-    </Container>
+    </div>
   );
 };
 
-export default AddVocabForm;
+export default DisplaySignSection;

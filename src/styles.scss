@@ -75,6 +75,13 @@ code {
   &-none {
     padding: 0;
   }
+
+  &-horizontal {
+    &-none {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
 
 .margin {
@@ -83,6 +90,9 @@ code {
   }
 
   &-vertical {
+    margin-top: 12px;
+    margin-bottom: 12px;
+
     &-small {
       margin-top: 6px;
       margin-bottom: 6px;
@@ -98,6 +108,6 @@ hr {
   margin-top: 1em;
 }
 
-.fullwidth {
+.fullWidth {
   width: 100%;
 }

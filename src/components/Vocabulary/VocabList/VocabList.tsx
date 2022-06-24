@@ -3,7 +3,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import React from "react";
-import { Drawer } from "@mui/material";
+import { Drawer, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -22,7 +22,9 @@ export const VocabList = ({
   const vocabListElement = (
     <nav aria-label="Vocabulary list contents" style={{ minWidth: "15%" }}>
       <List disablePadding>
-        <ListSubheader>Vocabulary</ListSubheader>
+        <ListSubheader>
+          <Typography variant="subtitle1">Vocabulary</Typography>
+        </ListSubheader>
         {vocabList.map((word, i) => (
           <ListItem key={i}>
             <Link to={`/sign/${encodeURI(word)}`}>

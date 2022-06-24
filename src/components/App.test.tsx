@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import AddVocabForm from "./Vocabulary/AddVocabForm/AddVocabForm";
+import DisplaySignSection from "./Vocabulary/AddVocabForm/DisplaySignSection";
 
 // test("renders learn react link", () => {
 //   render(<AddVocabForm />);

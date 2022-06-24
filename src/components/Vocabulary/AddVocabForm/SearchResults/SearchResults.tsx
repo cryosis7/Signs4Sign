@@ -20,14 +20,15 @@ export const SearchResults = ({
   }
 
   const cleanedSearchTerm = searchTerm.toLowerCase().trim();
-  const matchingWords =
+  const matchingWords = (
     searchTerm.length <= 3
       ? signDictionary.filter((entry) =>
           entry.english.toLowerCase().startsWith(cleanedSearchTerm)
         )
       : signDictionary.filter((entry) =>
           entry.english.toLowerCase().includes(cleanedSearchTerm)
-        );
+        )
+  ).slice(0, 30);
 
   return (
     <Grid container spacing={1}>

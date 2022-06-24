@@ -1,16 +1,15 @@
-import AddVocabForm from "./AddVocabForm/AddVocabForm";
+import DisplaySignSection from "./AddVocabForm/DisplaySignSection";
 import { VocabList } from "./VocabList/VocabList";
 import React, { useState } from "react";
 import { Sign } from "../../shared/types";
-import { useMediaQuery, useTheme } from "@mui/material";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import AppBar from "@mui/material/AppBar";
+import { Container, useMediaQuery, useTheme } from "@mui/material";
+import { MenuBar } from "./MenuBar/MenuBar";
 
 export const Vocabulary = () => {
   const theme = useTheme();
   const usingSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const usingLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
+
   const [selectedSigns, setSelectedSigns] = useState<Sign[]>([]);
   const [isVocabDrawerOpen, setIsVocabDrawerOpen] = useState<boolean>(false);
 
@@ -25,36 +24,31 @@ export const Vocabulary = () => {
 
   return (
     <>
-      <AppBar position="fixed" color="primary" sx={{ top: 0, bottom: "auto" }}>
-        <Toolbar>
-          {usingSmallScreen && (
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={() => setIsVocabDrawerOpen(true)}
-            >
-              <MenuIcon />
-            </IconButton>
-          )}
-        </Toolbar>
-      </AppBar>
-      <Toolbar />
+      <MenuBar
+        usingSmallScreen={usingSmallScreen}
+        setIsVocabDrawerOpen={setIsVocabDrawerOpen}
+      />
 
-      <div
-        className="flex flex-justify-space-between flex-align-stretch"
-        style={{ gap: "1em" }}
+      <Container
+        maxWidth={usingLargeScreen ? "lg" : false}
+        className="margin-vertical"
       >
-        <VocabList
-          vocabList={selectedSigns.map((sign) => sign.english)}
-          usingSmallScreen={usingSmallScreen}
-          isDrawerOpen={isVocabDrawerOpen}
-          setIsDrawerOpen={(state: boolean) => setIsVocabDrawerOpen(state)}
-        />
-        <AddVocabForm
-          selectedSigns={selectedSigns}
-          toggleChecked={toggleVocabWord}
-        />
-      </div>
+        <div
+          className="flex flex-justify-space-around flex-align-stretch"
+          style={{ gap: "1em" }}
+        >
+          <VocabList
+            vocabList={selectedSigns.map((sign) => sign.english)}
+            usingSmallScreen={usingSmallScreen}
+            isDrawerOpen={isVocabDrawerOpen}
+            setIsDrawerOpen={(state: boolean) => setIsVocabDrawerOpen(state)}
+          />
+          <DisplaySignSection
+            selectedSigns={selectedSigns}
+            toggleChecked={toggleVocabWord}
+          />
+        </div>
+      </Container>
     </>
   );
 };
