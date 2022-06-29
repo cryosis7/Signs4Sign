@@ -1,4 +1,4 @@
-import { Sign } from "../components/Vocabulary/Sign";
+import { Sign } from "../components/Vocabulary/Sign/Sign";
 import { useParams } from "react-router-dom";
 
 export const SignRoute = () => {
