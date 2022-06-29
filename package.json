@@ -30,6 +30,7 @@
   },
   "scripts": {
     "prepare": "husky install",
+    "download_assets": "bash ./downloadAssets.sh",
     "generate_pictures": "py src/dictionary/unpackAssets.py",
     "generate_json": "py src/dictionary/datToJson.py",
     "start": "react-scripts start",

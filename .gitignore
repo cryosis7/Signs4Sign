@@ -2,7 +2,8 @@
 
 # Custom
 idea/
-src/dictionary/assets*
+assets.tar.gz
+assets/
 src/dictionary/wordlist.json
 
 # dependencies
