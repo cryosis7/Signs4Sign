@@ -18,8 +18,7 @@ export const SearchBar = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-justify-space-between flex-align-stretch"
-      style={{ gap: "1em" }}
+      className="flex flex-justify-space-between flex-align-stretch flex-gap"
     >
       <TextField
         autoFocus

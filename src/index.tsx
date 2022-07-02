@@ -14,7 +14,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<Vocabulary />}>
+        <Route path="/" element={<Vocabulary />}>
           <Route path="search">
             <Route path=":searchTerm" element={<SearchRoute />} />
           </Route>
@@ -22,8 +22,7 @@ root.render(
             <Route path=":signName" element={<SignRoute />} />
           </Route>
         </Route>
-        {/*<Route path="/" element={<Vocabulary/>} />*/}
-        {/*<Route path="*" element={<Navigate replace to={'/'}/>} />*/}
+        <Route path="*" element={<Navigate replace to={"/"} />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

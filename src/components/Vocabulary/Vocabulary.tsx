@@ -33,10 +33,7 @@ export const Vocabulary = () => {
         maxWidth={usingLargeScreen ? "lg" : false}
         className="margin-vertical"
       >
-        <div
-          className="flex flex-justify-space-around flex-align-stretch"
-          style={{ gap: "1em" }}
-        >
+        <div className="flex flex-justify-space-around flex-align-stretch flex-gap">
           <VocabList
             vocabList={selectedSigns.map((sign) => sign.english)}
             usingSmallScreen={usingSmallScreen}

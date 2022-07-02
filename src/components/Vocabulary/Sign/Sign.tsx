@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { Sign as SignType } from "../../../shared/types";
 import {
   ILLUSTRATION_OF_SIGN_FOR,
+  NZSL_DICTIONARY,
   NZSL_SIGN_URL,
 } from "../../../shared/constants";
 
@@ -40,26 +41,30 @@ export const Sign = ({ signName }: { signName: string }) => {
     return <></>;
   }
 
+  //TODO: Scale sign for different screens.
   return (
     <Card>
       <CardHeader title={sign.english} subheader={sign.maori} />
-      <CardContent>
-        <CardMedia
-          component="img"
-          image={image}
-          alt={ILLUSTRATION_OF_SIGN_FOR + sign.english}
-        />
-        {sign.secondary && <Typography>{sign.secondary}</Typography>}
-        {signId && (
-          <Typography variant="body2">
-            See this word in the{" "}
-            {
-              <a href={NZSL_SIGN_URL + signId} target={"_blank"}>
-                NZSL dictionary
-              </a>
-            }
-          </Typography>
-        )}
+      <CardContent sx={{ maxHeight: "400px" }}>
+        <div className="flex flex-column flex-justify-space-around flex-align-center flex-gap">
+          <CardMedia
+            component="img"
+            image={image}
+            alt={ILLUSTRATION_OF_SIGN_FOR + sign.english}
+            style={{ width: "auto", height: "inherit" }}
+          />
+          {sign.secondary && <Typography>{sign.secondary}</Typography>}
+          {signId && (
+            <Typography variant="body2">
+              See this word in the{" "}
+              {
+                <a href={NZSL_SIGN_URL + signId} target={"_blank"}>
+                  {NZSL_DICTIONARY}
+                </a>
+              }
+            </Typography>
+          )}
+        </div>
       </CardContent>
     </Card>
   );
