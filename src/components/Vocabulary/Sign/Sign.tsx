@@ -3,6 +3,7 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
+  Grid,
   Typography,
 } from "@mui/material";
 import signDictionary from "../../../dictionary/nzsl.json";
@@ -12,6 +13,7 @@ import {
   ILLUSTRATION_OF_SIGN_FOR,
   NZSL_DICTIONARY,
   NZSL_SIGN_URL,
+  SEE_MORE_TEXT,
 } from "../../../shared/constants";
 
 export const Sign = ({ signName }: { signName: string }) => {
@@ -35,7 +37,7 @@ export const Sign = ({ signName }: { signName: string }) => {
     setSign(sign);
     setImage(require(`/src/assets/${sign.picture}`));
     setSignId(sign.picture.replace(/^.*_(?=\d{3,4}_)/, "").replace(/\D/g, ""));
-  }, []);
+  }, [signName]);
 
   if (!sign) {
     return <></>;
@@ -45,27 +47,42 @@ export const Sign = ({ signName }: { signName: string }) => {
   return (
     <Card>
       <CardHeader title={sign.english} subheader={sign.maori} />
-      <CardContent sx={{ maxHeight: "400px" }}>
-        <div className="flex flex-column flex-justify-space-around flex-align-center flex-gap">
+      <Grid
+        container
+        spacing={2}
+        component={CardContent}
+        direction="column"
+        justifyContent="space-around"
+        alignContent="center"
+      >
+        <Grid item>
           <CardMedia
             component="img"
             image={image}
             alt={ILLUSTRATION_OF_SIGN_FOR + sign.english}
-            style={{ width: "auto", height: "inherit" }}
+            style={{ width: "inherit" }}
           />
+        </Grid>
+        <Grid item>
           {sign.secondary && <Typography>{sign.secondary}</Typography>}
-          {signId && (
+        </Grid>
+        {signId && (
+          <Grid item>
             <Typography variant="body2">
-              See this word in the{" "}
+              {SEE_MORE_TEXT}
               {
-                <a href={NZSL_SIGN_URL + signId} target={"_blank"}>
+                <a
+                  href={NZSL_SIGN_URL + signId}
+                  target={"_blank"}
+                  rel="noreferrer"
+                >
                   {NZSL_DICTIONARY}
                 </a>
               }
             </Typography>
-          )}
-        </div>
-      </CardContent>
+          </Grid>
+        )}
+      </Grid>
     </Card>
   );
 };
