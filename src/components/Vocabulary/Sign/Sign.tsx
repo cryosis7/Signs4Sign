@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
 import signDictionary from "../../../dictionary/nzsl.json";
 import React, { useEffect, useState } from "react";
 import { Sign as SignType } from "../../../shared/types";
@@ -18,7 +11,7 @@ import {
 
 export const Sign = ({ signName }: { signName: string }) => {
   const [sign, setSign] = useState<SignType>();
-  const [image, setImage] = useState();
+  // const [image, setImage] = useState();
   const [signId, setSignId] = useState("");
 
   useEffect(() => {
@@ -35,16 +28,13 @@ export const Sign = ({ signName }: { signName: string }) => {
     }
 
     setSign(sign);
-    setImage(require(`/src/assets/${sign.picture}`));
     setSignId(sign.picture.replace(/^.*_(?=\d{3,4}_)/, "").replace(/\D/g, ""));
   }, [signName]);
 
-  if (!sign) {
-    return <></>;
-  }
-
   //TODO: Scale sign for different screens.
-  return (
+  return !sign ? (
+    <></>
+  ) : (
     <Card>
       <CardHeader title={sign.english} subheader={sign.maori} />
       <Grid
@@ -56,11 +46,9 @@ export const Sign = ({ signName }: { signName: string }) => {
         alignContent="center"
       >
         <Grid item>
-          <CardMedia
-            component="img"
-            image={image}
+          <img
+            src={require(`/src/assets/${sign.picture}`)}
             alt={ILLUSTRATION_OF_SIGN_FOR + sign.english}
-            style={{ width: "inherit" }}
           />
         </Grid>
         <Grid item>
