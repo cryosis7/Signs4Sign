@@ -8,6 +8,7 @@ import {
   NZSL_SIGN_URL,
   SEE_MORE_TEXT,
 } from "../../../shared/constants";
+import { FeatureNames, isFeatureEnabled } from "../../../shared/features";
 
 export const Sign = ({ signName }: { signName: string }) => {
   const [sign, setSign] = useState<SignType>();
@@ -36,7 +37,11 @@ export const Sign = ({ signName }: { signName: string }) => {
     <></>
   ) : (
     <Card>
-      <CardHeader title={sign.english} subheader={sign.maori} />
+      {isFeatureEnabled(FeatureNames.MaoriNames) ? (
+        <CardHeader title={sign.english} subheader={sign.maori} />
+      ) : (
+        <CardHeader title={sign.english} />
+      )}
       <Grid
         container
         spacing={2}

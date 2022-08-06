@@ -16,6 +16,7 @@ import {
   ILLUSTRATION_OF_SIGN_FOR,
 } from "../../../../shared/constants";
 import { useNavigate } from "react-router-dom";
+import { FeatureNames, isFeatureEnabled } from "../../../../shared/features";
 
 interface Props {
   isSelected: boolean;
@@ -38,7 +39,11 @@ export const SignCard = ({ isSelected, sign, toggleChecked }: Props) => {
       <CardActionArea
         onClick={() => navigate(`/sign/${encodeURI(sign.english)}`)}
       >
-        <CardHeader title={sign.english} subheader={sign.maori} />
+        {isFeatureEnabled(FeatureNames.MaoriNames) ? (
+          <CardHeader title={sign.english} subheader={sign.maori} />
+        ) : (
+          <CardHeader title={sign.english} />
+        )}
         <CardContent>
           <CardMedia
             component="img"

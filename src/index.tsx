@@ -6,6 +6,13 @@ import { Vocabulary } from "./components/Vocabulary/Vocabulary";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { SignRoute } from "./routes/SignRoute";
 import { SearchRoute } from "./routes/SearchRoute";
+import { features } from "./shared/features";
+
+localStorage.setItem("flags", JSON.stringify(features));
+console.log(
+  "initiated features:",
+  features.map((value) => value.name + ": " + value.active)
+);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
