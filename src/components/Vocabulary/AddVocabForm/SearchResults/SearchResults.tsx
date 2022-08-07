@@ -1,8 +1,10 @@
 import signDictionary from "../../../../dictionary/nzsl.json";
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { Sign } from "../../../../shared/types";
 import { SignCard } from "./SignCard";
+import { IndexedDbService } from "../../../../services/IndexedDbService";
+import { Database } from "../../../../shared/constants";
 
 interface Props {
   searchTerm: string;
@@ -15,6 +17,18 @@ export const SearchResults = ({
   checkedList,
   toggleChecked,
 }: Props) => {
+  useEffect(() => {
+    const runIndexedDb = async () => {
+      const indexedDb = new IndexedDbService();
+      await indexedDb.createObjectStore([Database.TableSignDictionary]);
+      await indexedDb.searchDb(
+        Database.TableSignDictionary,
+        searchTerm.toLowerCase().trim()
+      );
+    };
+    runIndexedDb();
+  }, [searchTerm]);
+
   if (searchTerm.trim() === "") {
     return <></>;
   }

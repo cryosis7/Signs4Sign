@@ -5,3 +5,14 @@ export const NZSL_SIGN_URL = "https://www.nzsl.nz/signs/";
 export const ILLUSTRATION_OF_SIGN_FOR = "Illustration of sign for: ";
 export const SEE_MORE_TEXT = "See more information about this word in the ";
 export const STUDY = "STUDY";
+
+export const Database = {
+  Name: "db",
+  TableSignDictionary: "SignDictionary",
+  Index: {
+    English: {
+      Name: "by_name",
+      KeyPath: "english",
+    },
+  },
+};
